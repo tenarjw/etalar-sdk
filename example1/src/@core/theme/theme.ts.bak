@@ -1,0 +1,60 @@
+// ** MUI Imports
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+
+// Rozszerzenie interfejsu palety, aby TypeScript rozpoznawał Twoje nowe, niestandardowe kolory
+declare module '@mui/material/styles' {
+  interface Palette {
+    customColors: {
+      navText: string;
+      navHoverBg: string;
+      navHoverText: string;
+      navSelectedGradient: string;
+      navSelectedText: string;
+      navSubMenuBg: string;
+    };
+  }
+  interface PaletteOptions {
+    customColors?: {
+      navText?: string;
+      navHoverBg?: string;
+      navHoverText?: string;
+      navSelectedGradient?: string;
+      navSelectedText?: string;
+      navSubMenuBg?: string;
+    };
+  }
+}
+
+// Podstawowa konfiguracja motywu
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: '#9155FD', // Przykładowy kolor główny
+    },
+    // ...inne podstawowe ustawienia palety
+    text: {
+      primary: '#333'
+    },
+    background: {
+      paper: '#FFF'
+    },
+    // =================================================================
+    // ** CENTRALNE MIEJSCE DO ZARZĄDZANIA KOLORAMI NAWIGACJI **
+    // Zmieniaj wartości tylko tutaj, a całe menu się zaktualizuje.
+    // =================================================================
+    customColors: {
+      navText: '#333333',                       // Domyślny kolor tekstu w menu
+      navHoverBg: '#cda703',                     // Tło elementu menu po najechaniu
+      navHoverText: '#FFFFFF',                   // Kolor tekstu po najechaniu
+      navSelectedText: '#960303ff',                // Kolor tekstu dla aktywnego elementu
+      navSubMenuBg: '#FFFFFF',                   // Tło dla rozwijanego podmenu
+      // Gradient dla aktywnego elementu menu (używa kolorów głównych z palety)
+      navSelectedGradient: 'linear-gradient(98deg, #C6A7FE, #9155FD 94%)',
+    }
+  },
+  // ... reszta Twojej konfiguracji, np. typography, shadows, etc.
+});
+
+theme = responsiveFontSizes(theme);
+
+export default theme;
