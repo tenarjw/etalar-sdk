@@ -3,7 +3,7 @@ import axios, { configs_post, originalAxios } from '../api/api_axios';
 import CONFIG from '../configs/config';
 import { OrderCreateRequest, OrderCreateResponse } from '@/types/payet';
 
-const PAYMENT_API_BASE_URL = CONFIG.apiETalarUrl + 'v2/payet'; 
+const PAYMENT_API_BASE_URL = CONFIG.apiUrl + 'v2/payet'; 
 export const PAYMENT_API_WS = CONFIG.apiWs;
 
 interface ApiErrorDetail {

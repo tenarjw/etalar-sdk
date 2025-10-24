@@ -20,6 +20,7 @@ export type UserDataType = {
   roles: string[]
   // accessToken nie powinien być tu bezpośrednio przechowywany,
   // bo jest częścią authToken. Lepiej pobierać z authToken w razie potrzeby.
+  groups: string[],
   id?: number // obsolete
   role?: string // obsolete
   idToken?: string // obsolete

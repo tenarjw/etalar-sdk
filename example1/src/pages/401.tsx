@@ -14,7 +14,6 @@ import Box, { BoxProps } from '@mui/material/Box'
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
-import FooterIllustrations from 'src/views/pages/misc/FooterIllustrations'
 import Login from "src/components/login"; 
 
 // ** Styled Components
@@ -52,7 +51,6 @@ const Error401 = () => {
         <Img height='487' alt='error-illustration' src='/images/pages/401.png' />
    <Login  page='home' />
       </Box>
-      <FooterIllustrations />
     </Box>
   )
 }

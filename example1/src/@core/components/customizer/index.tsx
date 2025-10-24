@@ -361,6 +361,6 @@ const Customizer = () => {
   )
 }
 
-export default Customizer
+export default Toggler
 
 

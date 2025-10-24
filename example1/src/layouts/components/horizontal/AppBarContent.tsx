@@ -7,17 +7,13 @@ import { Settings } from 'src/@core/context/settingsContext'
 
 // ** Components
 
-import ShortcutsDropdown  from 'src/@core/layouts/components/shared-components/ShortcutsDropdown'
-
 import {useTranslation} from "react-i18next";
 
 import Flag from 'react-flagkit'
 
 import i18n from '../../../configs/i18n'
-import {  Grid,  IconButton, Link } from '@mui/material';
+import { Grid, Link } from '@mui/material';
 
-
-import getShortcuts from '../Shortcuts';
 
 interface Props {
   hidden: boolean
@@ -48,15 +44,12 @@ const AppBarContent = (props: Props) => {
 
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', width:'100%' }}>
-    
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={4} style={{ display: 'flex'}}>
-        <Link href='/'>
-    LOGO
-        </Link>
-       
-        </Grid>
+    //<Box sx={{ display: 'flex', alignItems: 'center', width:'100%' }}>
+    <>
+    <Grid container spacing={2}>
+       <Grid item xs={12} md={4} sx={{ display: 'flex' }}>
+        <Link href="/">LOGO</Link>    
+      </Grid>
         <Grid item xs={12} md={4} >
           
         <Box className='actions-right' 
@@ -76,7 +69,7 @@ const AppBarContent = (props: Props) => {
         </Grid>
       </Grid>
       
-     </Box>
+     </>
   )
 }
 

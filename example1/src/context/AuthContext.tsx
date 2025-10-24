@@ -19,6 +19,7 @@ const defaultAuthContext: AuthValuesType = {
     roles: [],
     id: 1,
     role: 'admin', // obsolete
+    groups : ['editor', 'viewer'],
     idToken: '',
     userIdent: '',
   },
@@ -92,6 +93,7 @@ export const AuthProvider = ({ children }: AuthProps) => {
       if (jwt) {
         const userData: UserDataType = {
           roles: jwt.realm_access?.roles || [],
+          groups:  [], //?
           username: jwt.preferred_username || '',
           email: jwt.email || '',
         };
@@ -121,6 +123,7 @@ export const AuthProvider = ({ children }: AuthProps) => {
         if (jwt) {
           const userData: UserDataType = {
             roles: jwt.realm_access?.roles || [],
+            groups: [], // todo
             username: jwt.preferred_username || '',
             email: jwt.email || '',
           };

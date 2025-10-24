@@ -6,4 +6,3 @@
 
 
 declare module '*.css';
-declare module 'formik';

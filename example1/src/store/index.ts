@@ -9,7 +9,6 @@ import messages from './messages'
 import offerReducer from './offers/offerSlice';
 
 import offerFormReducer from './offers/offerFormSlice';
-import ownerOffersReducer from './offers/ownerOffersSlice';
 import allOffersReducer from './offers/allOffersSlice';
 import categoryReducer from './offers/categorySlice';
 

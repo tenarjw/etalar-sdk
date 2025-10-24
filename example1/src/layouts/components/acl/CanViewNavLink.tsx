@@ -1,8 +1,8 @@
 // ** React Imports
-import { ReactNode, useContext } from 'react'
+import { ReactNode } from 'react'
 
-// ** Component Imports
-import { AbilityContext } from 'src/layouts/components/acl/Can'
+// ** Hooks
+import { useAuth } from 'src/hooks/useAuth'
 
 // ** Types
 import { NavLink } from 'src/@core/layouts/types'
@@ -17,9 +17,21 @@ const CanViewNavLink = (props: Props) => {
   const { children, navLink } = props
 
   // ** Hook
-  const ability = useContext(AbilityContext)
+  const auth = useAuth()
+  const userRole = auth.user?.role // Załóżmy, że masz 'role' w obiekcie user
 
-  return ability && ability.can(navLink?.action, navLink?.subject) ? <>{children}</> : null
+  // 1. Jeśli link nie ma zdefiniowanych ról, pokaż go każdemu
+  if (!navLink?.roles || navLink.roles.length === 0) {
+    return <>{children}</>
+  }
+
+  // 2. Jeśli link ma role i użytkownik ma pasującą rolę, pokaż go
+  if (userRole && navLink.roles.includes(userRole)) {
+    return <>{children}</>
+  }
+
+  // 3. W przeciwnym razie ukryj
+  return null
 }
 
 export default CanViewNavLink

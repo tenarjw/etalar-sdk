@@ -16,27 +16,6 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "react-hooks/rules-of-hooks": "off",
-    // add new line above comment
-    "lines-around-comment": [
-      "off",
-      {
-        "beforeLineComment": true,
-        "beforeBlockComment": true,
-        "allowBlockStart": true,
-        "allowClassStart": true,
-        "allowObjectStart": true,
-        "allowArrayStart": true
-      }
-    ],
-    // add new line above return
-    "newline-before-return": "off",
-    // add new line below import
-    "import/newline-after-import": [
-      "off",
-      {
-        "count": 1
-      }
-    ],
     "@typescript-eslint/ban-types": [
       "error",
       {
@@ -48,6 +27,7 @@
     ]
   },
   "plugins": [
+    "@typescript-eslint",
     "import"
   ],
   "settings": {
@@ -60,9 +40,7 @@
     "import/resolver": {
       "typescript": {
         "alwaysTryTypes": true,
-        "project": [
-          "./tsconfig.json"
-        ]
+        "project": "./tsconfig.json"
       }
     }
   },

@@ -1,11 +1,11 @@
 // ** React Imports
-import { ReactNode, useContext } from 'react'
+import { ReactNode  } from 'react'
 
-// ** Component Imports
-import { AbilityContext } from 'src/layouts/components/acl/Can'
+// ** Hooks
+import { useAuth } from 'src/hooks/useAuth'
 
 // ** Types
-import { NavGroup, NavLink } from 'src/@core/layouts/types'
+import { NavGroup  } from 'src/@core/layouts/types'
 
 interface Props {
   navGroup?: NavGroup
@@ -17,20 +17,36 @@ const CanViewNavGroup = (props: Props) => {
   const { children, navGroup } = props
 
   // ** Hook
-  const ability = useContext(AbilityContext)
+  const auth = useAuth()
+  const userRole = auth.user?.role 
 
   const canViewMenuGroup = (item: NavGroup) => {
+    /* todo....
     const hasAnyVisibleChild =
-      item.children && item.children.some((i: NavLink) => ability && ability.can(i.action, i.subject))
-
-    if (!(item.action && item.subject)) {
-      return hasAnyVisibleChild
-    }
+      item.children && item.children.some((i: NavLink) => 
+        ability && ability.can(i.action, i.subject))
 
     return ability && ability.can(item.action, item.subject) && hasAnyVisibleChild
+    */
+   /*
+         if (!navLink?.roles || navLink.roles.length === 0){
+        return hasAnyVisibleChild
+      }
+        // 1. Jeśli link nie ma zdefiniowanych ról, pokaż go każdemu
+  if (!navLink?.roles || navLink.roles.length === 0) {
+    return <>{children}</>
+  }
+
+  // 2. Jeśli link ma role i użytkownik ma pasującą rolę, pokaż go
+  if (userRole && navLink.roles.includes(userRole)) {
+    return <>{children}</>
+  }
+    */
+   return true
   }
 
   return navGroup && canViewMenuGroup(navGroup) ? <>{children}</> : null
+  
 }
 
 export default CanViewNavGroup

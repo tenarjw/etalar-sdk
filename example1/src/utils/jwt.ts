@@ -1,10 +1,3 @@
-export function parseJwt0(token: string): any | null {
-  try {
-    return JSON.parse(atob(token.split('.')[1]))
-  } catch {
-    return null
-  }
-}
 
 export const parseJwt = (token : string) => {
   let base64Url = token.split('.')[1];

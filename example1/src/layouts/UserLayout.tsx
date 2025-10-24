@@ -21,7 +21,6 @@ import HorizontalAppBarContent from './components/horizontal/AppBarContent'
 // ** Hook Import
 import { useSettings } from 'src/@core/hooks/useSettings'
 
-import DialogBox from 'src/components/dialog'
 // ** Theme Config Import
 import themeConfig from 'src/configs/themeConfig'
 import Footer from '@/components/Footer';
@@ -98,9 +97,7 @@ const UserLayout = ({ children, contentHeightFixed }: Props) => {
       })}
     >
  
-      {children}
- 
-        <DialogBox />
+    {children}
 
     </Layout>
     <Footer />

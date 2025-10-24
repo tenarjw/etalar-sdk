@@ -35,8 +35,9 @@ export type NavLink = {
   icon?: string;
   path?: string;
   title: string;
-  action?: string;
-  subject?: string;
+  roles?: string[];
+  //action?: string;
+  //subject?: string;
   disabled?: boolean;
   badgeContent?: string;
   externalLink?: boolean;

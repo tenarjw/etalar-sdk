@@ -1,7 +1,7 @@
-// apiClient.ts
+// api_client.ts
 
 import axios from 'axios';
-import { getValidAccessToken } from '../configs/auth'
+import { getValidAccessToken } from '../configs/auth';
 import CONFIG from '../configs/config';
 
 export interface IRequestOptions {
@@ -25,10 +25,14 @@ const apiClient = axios.create({
 
 // 2. Interceptor do tej konkretnej instancji
 apiClient.interceptors.request.use(
-  async (config : IRequestConfig) => {
+  async (config) => {
     //console.log("Interceptor is running...");  
     const accessToken = await getValidAccessToken();
     if (accessToken) {
+       // Type assertion dla headers
+      if (!config.headers) {
+        config.headers = {} as any; //  lub new AxiosHeaders();
+      }
       config.headers['Authorization'] = `Bearer ${accessToken}`;
     }
     return config;

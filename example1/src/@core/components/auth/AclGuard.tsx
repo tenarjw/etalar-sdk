@@ -1,17 +1,8 @@
 // ** React Imports
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 
 // ** Next Imports
 import { useRouter } from 'next/router'
-
-// ** Types
-import type { ACLObj, AppAbility } from 'src/configs/acl'
-
-// ** Context Imports
-import { AbilityContext } from 'src/layouts/components/acl/Can'
-
-// ** Config Import
-import { buildAbilityFor } from 'src/configs/acl'
 
 // ** Component Import
 import NotAuthorized from 'src/pages/401'
@@ -23,37 +14,37 @@ import { useAuth } from 'src/hooks/useAuth'
 interface AclGuardProps {
   children: ReactNode
   guestGuard: boolean
-  aclAbilities: ACLObj
+  pageRoles: string[] // To jest nowa właściwość z _app.tsx
 }
 
 const AclGuard = (props: AclGuardProps) => {
   // ** Props
-  const { aclAbilities, children, guestGuard } = props
-
-  const [ability, setAbility] = useState<AppAbility | undefined>(undefined)
+  const { pageRoles, children, guestGuard } = props
 
   // ** Hooks
   const auth = useAuth()
   const router = useRouter()
 
-  // If guestGuard is true and user is not logged in or its an error page, render the page without checking access
+  // Jeśli to strona dla gości lub błędu, renderuj bez sprawdzania
   if (guestGuard || router.route === '/404' || router.route === '/500' || router.route === '/') {
     return <>{children}</>
   }
 
-  // User is logged in, build ability for the user based on his role
-  if (auth.user && auth.user.role && !ability) {
-    setAbility(buildAbilityFor(auth.user.role, aclAbilities.subject))
+  // Użytkownik jest zalogowany, sprawdź rolę
+  if (auth.user && auth.user.role) {
+    // Jeśli strona nie wymaga żadnych ról, zezwól
+    if (pageRoles.length === 0) {
+      return <>{children}</>
+    }
+
+    // Jeśli użytkownik ma wymaganą rolę, zezwól
+    if (pageRoles.includes(auth.user.role)) {
+      return <>{children}</>
+    }
   }
 
-  // Check the access of current user and render pages
-  if (ability && ability.can(aclAbilities.action, aclAbilities.subject)) {
-    return <AbilityContext.Provider value={ability}>{children}</AbilityContext.Provider>
-  }
-
-  // Render Not Authorized component if the current user has limited access
-//  return <>{children}</>
-
+  // Jeśli użytkownik nie jest zalogowany (a strona nie jest dla gości)
+  // LUB nie ma odpowiedniej roli, pokaż 401
   return (
     <BlankLayout>
       <NotAuthorized />

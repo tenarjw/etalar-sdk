@@ -9,10 +9,7 @@ import Icon from 'src/@core/components/icon'
 import { Settings } from 'src/@core/context/settingsContext'
 
 // ** Components
-import ModeToggler from 'src/@core/layouts/components/shared-components/ModeToggler'
-import LanguageDropdown from 'src/@core/layouts/components/shared-components/LanguageDropdown'
-import ShortcutsDropdown, { ShortcutsType } from 'src/@core/layouts/components/shared-components/ShortcutsDropdown'
-import { Button, Grid, Link } from '@mui/material';
+import { Grid, Link } from '@mui/material';
 
 
 ////////
@@ -24,8 +21,6 @@ import Flag from 'react-flagkit'
 import i18n from '../../../configs/i18n'
 
 ///////////
-
-import getShortcuts from '../Shortcuts';
 
 interface Props {
   hidden: boolean

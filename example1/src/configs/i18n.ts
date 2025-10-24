@@ -2,11 +2,10 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LngDetector from 'i18next-browser-languagedetector';
-import Backend from 'i18next-xhr-backend';
 
 import en from './locale/en.json';
 import pl from './locale/pl.json';
-import ua from './locale/ua.json';
+ 
 
 i18n
   //.use(Backend)
@@ -14,7 +13,7 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources: {
-      pl, en, ua
+      pl, en 
     },
     fallbackLng: 'en', // use pl if detected lng is not available
     keySeparator: false, // we do not use keys in form messages.welcome

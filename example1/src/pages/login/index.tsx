@@ -61,6 +61,7 @@ const LoginPage = () => {
               "username": jtoken.preferred_username,
               "email": jtoken.email?jtoken.email:jtoken.preferred_username,
               "roles": jtoken.realm_access.roles,
+              "groups":[],
               "id": 1,
               "role":"admin", // obsolete
               "idToken": token.access_token, // obsolete

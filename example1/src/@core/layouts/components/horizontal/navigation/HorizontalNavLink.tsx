@@ -80,7 +80,6 @@ const HorizontalNavLink = ({ item, settings, hasParent }: Props) => {
       <Wrapper {...(!hasParent ? { component: 'div', sx: { py: settings.skin === 'bordered' ? 2.625 : 2.75 } } : {})}>
         <StyledListItem
           component={Link}
-          disabled={item.disabled}
           {...(item.disabled && { tabIndex: -1 })}
           className={isNavLinkActive() ? 'active' : ''}
           target={item.openInNewTab ? '_blank' : undefined}

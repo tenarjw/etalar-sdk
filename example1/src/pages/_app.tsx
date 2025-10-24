@@ -17,7 +17,6 @@ import { I18nextProvider } from 'react-i18next';
 
 
 // ** Config Imports
-import { defaultACLObj } from 'src/configs/acl'
 import themeConfig from 'src/configs/themeConfig'
 
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -46,8 +45,6 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 import '../../styles/globals.css'
 
 import React from 'react'
-
-import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 
 // ** Extend App Props with Emotion
@@ -83,12 +80,11 @@ const App = (props: ExtendedAppProps) => {
 
   const guestGuard = Component.guestGuard ?? false
 
-  const aclAbilities = Component.acl ?? defaultACLObj
- 
+  const pageRoles = Component.roles ?? [] // Użyj nowej właściwości z next.d.ts
+  
 
   return (
     <Provider store={store}>
-      
       <I18nextProvider i18n={i18n as any}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
        <Head>
@@ -110,10 +106,10 @@ const App = (props: ExtendedAppProps) => {
                 return (
                   <ThemeComponent settings={settings}>
                     <WindowWrapper>
-                        <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard}>
+                        <AclGuard pageRoles={pageRoles} guestGuard={guestGuard}>
                           {getLayout(<Component {...pageProps} />)}
                         </AclGuard>
-                    </WindowWrapper>                  
+                    </WindowWrapper>
                    </ThemeComponent>
                 )
               }}
